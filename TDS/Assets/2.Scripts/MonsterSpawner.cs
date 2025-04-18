@@ -15,6 +15,8 @@ public class MonsterSpawner : MonoBehaviour
         StartCoroutine(MonsterSpawn());
     }
 
+
+    // 랜덤으로 몬스터1과 몬스터2 소환 코루틴
     IEnumerator MonsterSpawn()
     {
         while (true)

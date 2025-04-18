@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class BackgroundScroll : MonoBehaviour
 {
+    // 배경 속도
     public float scrollSpeed;
+    // 배경 세로 사이즈
     public float imageWidth; 
 
+    // 배경 자식 갯수
     private Transform[] parts;
 
     void Start()
     {
+        // 자식들의 위치 가져옴
         parts = new Transform[transform.childCount];
         for (int i = 0; i < parts.Length; i++)
         {
@@ -20,11 +24,13 @@ public class BackgroundScroll : MonoBehaviour
 
     void Update()
     {
+        // 왼쪽으로 이동
         foreach (Transform part in parts)
         {
             part.position += Vector3.left * scrollSpeed * Time.deltaTime;
         }
 
+        // x죄표가 왼쪽범위를 넘어가면 오른쪽으로 이동
         foreach (Transform part in parts)
         {
             if (part.position.x <= -imageWidth)
@@ -34,6 +40,7 @@ public class BackgroundScroll : MonoBehaviour
             }
         }
 
+        // 닿은 몬스터의 갯수를 가져와서 적용
         if(TruckCtrl.instance.monsterCount > 0 && TruckCtrl.instance.monsterCount < 2)
         {
             scrollSpeed = 1;
